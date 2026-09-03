@@ -1,122 +1,152 @@
 (() => {
-  const main = document.querySelector("main");
+  const root = document.querySelector("main");
+  const menu = document.querySelector(".menu-panel");
   const menuButton = document.querySelector(".nav-menu");
-  const menuPanel = document.querySelector(".menu-panel");
   const heroMedia = document.querySelector(".hero-media");
-  const aboutStatement = document.querySelector(".about-statement");
-  const workScene = document.querySelector(".work-scene");
-  const workButtons = [...document.querySelectorAll(".work-index button")];
-  const workArticles = [...document.querySelectorAll(".work-visual article")];
-  const workProgress = document.querySelector(".work-progress span");
-  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const about = document.querySelector(".about-statement");
+  const experienceScene = document.querySelector(".work-scene");
+  const experienceSlides = [...document.querySelectorAll(".work-visual article")];
+  const experienceButtons = [...document.querySelectorAll(".work-index button")];
+  const experienceProgress = document.querySelector(".work-progress span");
+  const capabilityRows = [...document.querySelectorAll(".service-list article")];
+  let menuOpen = false;
+  let frame = 0;
+  let activeExperience = 0;
+
+  const setMenu = (open) => {
+    menuOpen = open;
+    menu?.classList.toggle("open", open);
+    menu?.setAttribute("aria-hidden", String(!open));
+    menuButton?.setAttribute("aria-expanded", String(open));
+    menuButton?.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  const setExperience = (index) => {
+    activeExperience = Math.max(0, Math.min(experienceSlides.length - 1, index));
+    experienceSlides.forEach((slide, itemIndex) => slide.classList.toggle("active", itemIndex === activeExperience));
+    experienceButtons.forEach((button, itemIndex) => button.classList.toggle("active", itemIndex === activeExperience));
+  };
+
+  const setCapability = (index) => {
+    capabilityRows.forEach((row, itemIndex) => {
+      const active = itemIndex === index;
+      row.classList.toggle("active", active);
+      row.querySelector("button")?.setAttribute("aria-expanded", String(active));
+    });
+  };
+
+  const navigate = (id) => {
+    const delay = menuOpen ? 520 : 30;
+    setMenu(false);
+    window.setTimeout(() => {
+      const target = document.getElementById(id);
+      if (!target) return;
+      const startY = window.scrollY;
+      const endY = Math.max(0, target.getBoundingClientRect().top + startY - 92);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        window.scrollTo(0, endY);
+        return;
+      }
+      const started = performance.now();
+      const duration = Math.min(1000, Math.max(520, Math.abs(endY - startY) * 0.18));
+      const step = (now) => {
+        const progress = Math.min(1, (now - started) / duration);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        window.scrollTo(0, startY + (endY - startY) * eased);
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }, delay);
+  };
 
   const updateClock = () => {
-    const value = new Intl.DateTimeFormat("en-IN", {
+    const time = new Intl.DateTimeFormat("en-IN", {
       timeZone: "Asia/Kolkata",
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     }).format(new Date());
-    document.querySelector("#clock").textContent = value;
-    document.querySelector("#footer-clock").textContent = value;
+    const navClock = document.querySelector(".nav-clock strong");
+    const footerClock = document.querySelector(".footer-grid > div:last-child p");
+    if (navClock) navClock.textContent = time;
+    if (footerClock) footerClock.textContent = `${time} · IST`;
   };
 
-  updateClock();
-  setInterval(updateClock, 60000);
-  setTimeout(() => main.classList.add("loaded"), 1150);
-
-  const setMenu = (open) => {
-    menuPanel.classList.toggle("open", open);
-    menuPanel.setAttribute("aria-hidden", String(!open));
-    menuButton.setAttribute("aria-expanded", String(open));
-    menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-    document.body.style.overflow = open ? "hidden" : "";
-  };
-
-  menuButton.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
-  addEventListener("keydown", (event) => { if (event.key === "Escape") setMenu(false); });
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener("click", (event) => {
-    const target = document.querySelector(link.getAttribute("href"));
-    if (!target) return;
-    event.preventDefault();
-    const wasOpen = menuButton.getAttribute("aria-expanded") === "true";
-    setMenu(false);
-    setTimeout(() => target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }), wasOpen ? 720 : 40);
-  }));
-
-  const revealItems = document.querySelectorAll("[data-reveal]");
-  const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("is-visible");
-      observer.unobserve(entry.target);
-    }
-  }), { threshold: .12, rootMargin: "0px 0px -7% 0px" });
-  revealItems.forEach((item) => observer.observe(item));
-
-  const setActiveWork = (index) => {
-    workButtons.forEach((button, itemIndex) => button.classList.toggle("active", itemIndex === index));
-    workArticles.forEach((article, itemIndex) => article.classList.toggle("active", itemIndex === index));
-  };
-  workButtons.forEach((button, index) => button.addEventListener("click", () => setActiveWork(index)));
-
-  document.querySelectorAll(".service-list article").forEach((article) => {
-    const activate = () => {
-      document.querySelectorAll(".service-list article").forEach((item) => {
-        item.classList.toggle("active", item === article);
-        item.querySelector("button").setAttribute("aria-expanded", String(item === article));
-      });
-    };
-    article.addEventListener("mouseenter", activate);
-    article.querySelector("button").addEventListener("click", activate);
-  });
-
-  document.querySelectorAll(".faq-list article").forEach((article) => {
-    article.querySelector("button").addEventListener("click", () => {
-      const opening = !article.classList.contains("active");
-      document.querySelectorAll(".faq-list article").forEach((item) => {
-        const active = opening && item === article;
-        item.classList.toggle("active", active);
-        item.querySelector("button").setAttribute("aria-expanded", String(active));
-        item.querySelector("button i").textContent = active ? "−" : "+";
-      });
-    });
-  });
-
-  let frame = 0;
-  const render = () => {
+  const onFrame = () => {
     frame = 0;
-    const y = scrollY;
-    const vh = innerHeight;
-    document.documentElement.classList.toggle("has-scrolled", y > 80);
-
-    if (!reduceMotion && heroMedia) {
-      heroMedia.style.transform = `translate3d(0,${Math.min(y * .08, 80)}px,0) scale(${1.02 + Math.min(y / vh, 1) * .05})`;
-    }
-
-    if (aboutStatement) {
-      const rect = aboutStatement.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, (vh * .82 - rect.top) / (rect.height + vh * .4)));
-      const words = aboutStatement.querySelectorAll("span");
-      words.forEach((word, index) => word.classList.toggle("lit", index / words.length < progress));
-    }
-
-    if (workScene && innerWidth > 820) {
-      const rect = workScene.getBoundingClientRect();
-      const distance = workScene.offsetHeight - vh;
-      const progress = Math.max(0, Math.min(.999, -rect.top / distance));
-      setActiveWork(Math.min(workArticles.length - 1, Math.floor(progress * workArticles.length)));
-      workProgress.style.transform = `scaleX(${progress})`;
-    }
-
+    const y = window.scrollY;
+    const vh = window.innerHeight;
     document.querySelectorAll("[data-reveal]:not(.is-visible)").forEach((item) => {
       const rect = item.getBoundingClientRect();
-      if (rect.top < vh * .94 && rect.bottom > 0) item.classList.add("is-visible");
+      if (rect.top < vh * 0.96 && rect.bottom > 0) item.classList.add("is-visible");
     });
+    document.documentElement.classList.toggle("has-scrolled", y > 80);
+    if (heroMedia) {
+      heroMedia.style.transform = `translate3d(0,${Math.min(y * 0.055, 55)}px,0) scale(${1.02 + Math.min(y / vh, 1) * 0.035})`;
+    }
+    if (about) {
+      const rect = about.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (vh * 0.82 - rect.top) / Math.max(rect.height + vh * 0.28, 1)));
+      const words = [...about.querySelectorAll("span")];
+      words.forEach((word, index) => {
+        const local = Math.max(0, Math.min(1, progress * 1.45 - index / Math.max(words.length, 1)));
+        word.style.opacity = String(0.18 + local * 0.82);
+        word.style.transform = `translateY(${(1 - local) * 8}px)`;
+      });
+    }
+    if (experienceScene && window.innerWidth > 820) {
+      const rect = experienceScene.getBoundingClientRect();
+      const distance = Math.max(experienceScene.offsetHeight - vh, 1);
+      const progress = Math.max(0, Math.min(0.999, -rect.top / distance));
+      const next = Math.min(experienceSlides.length - 1, Math.floor(progress * experienceSlides.length));
+      if (next !== activeExperience) setExperience(next);
+      if (experienceProgress) experienceProgress.style.transform = `scaleX(${progress})`;
+    }
   };
 
-  const requestRender = () => { if (!frame) frame = requestAnimationFrame(render); };
-  render();
-  addEventListener("scroll", requestRender, { passive: true });
-  addEventListener("resize", requestRender);
+  const requestFrame = () => {
+    if (!frame) frame = window.requestAnimationFrame(onFrame);
+  };
+
+  menuButton?.addEventListener("click", () => setMenu(!menuOpen));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenu(false);
+  });
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const id = link.getAttribute("href")?.slice(1);
+      if (!id) return;
+      event.preventDefault();
+      navigate(id);
+    });
+  });
+  experienceButtons.forEach((button, index) => button.addEventListener("click", () => setExperience(index)));
+  capabilityRows.forEach((row, index) => {
+    row.addEventListener("mouseenter", () => setCapability(index));
+    row.querySelector("button")?.addEventListener("click", () => setCapability(index));
+  });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.04, rootMargin: "0px 0px -2% 0px" });
+    document.querySelectorAll("[data-reveal]").forEach((item) => observer.observe(item));
+  }
+
+  window.setTimeout(() => root?.classList.add("loaded"), 900);
+  window.setTimeout(onFrame, 120);
+  window.setTimeout(onFrame, 900);
+  document.fonts?.ready.then(onFrame);
+  updateClock();
+  window.setInterval(updateClock, 60000);
+  window.addEventListener("pageshow", onFrame);
+  window.addEventListener("scroll", requestFrame, { passive: true });
+  window.addEventListener("resize", requestFrame);
+  onFrame();
 })();
