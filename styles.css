@@ -138,3 +138,101 @@ section[id],footer[id]{scroll-margin-top:5.75rem}
 }
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}.loader{display:none}.site-nav,.hero h1 span,.hero h1 sup,.hero-media img,.hero h2 span,.hero-copy,.hero-actions,[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important;filter:none!important}.about-statement span{opacity:1!important;transform:none!important}.hero-media{transform:none!important}.work-scene{height:auto}.work-sticky{position:relative}}
+
+/* Quiet global bar with direct access to the portfolio sections. */
+.site-nav{
+  height:84px;
+  padding:0 var(--pad);
+  grid-template-columns:minmax(140px,1fr) auto minmax(140px,1fr);
+  gap:clamp(1rem,2vw,2rem);
+  mix-blend-mode:normal;
+  background:rgba(8,8,8,.74);
+  border-bottom:1px solid rgba(255,255,255,.11);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.has-scrolled .site-nav{background:rgba(8,8,8,.92)}
+.nav-brand,.has-scrolled .nav-brand{font-size:2.2rem;transform:none}
+.nav-links{display:flex;justify-content:center;align-items:center;gap:clamp(.8rem,2vw,2rem);height:100%}
+.nav-links a{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  min-height:48px;
+  white-space:nowrap;
+  font-size:.79rem;
+  font-weight:700;
+  letter-spacing:.035em;
+  color:#b8b8b5;
+  transition:color .25s var(--ease);
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:7px;
+  height:1px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .36s var(--ease);
+}
+.nav-links a:hover,.nav-links a.is-active{color:#fff}
+.nav-links a:hover::after,.nav-links a.is-active::after{transform:scaleX(1)}
+.site-nav .nav-resume{
+  justify-self:end;
+  height:48px;
+  padding:0 1.15rem;
+  border-color:rgba(255,255,255,.22);
+  font-size:.79rem;
+}
+.site-nav .nav-menu{display:none}
+.menu-panel{overflow-y:auto}
+
+/* Every portrait has a single placement; retain realistic texture and exposure. */
+.hero h1{top:6.25rem}
+.hero-media{filter:saturate(.88) contrast(1.04) brightness(.88)}
+.hero-media img{object-position:center 21%}
+.about-grid img{object-position:center 24%;filter:saturate(.8) contrast(1.03) brightness(.88)}
+.work-visual img{filter:saturate(.85) contrast(1.04) brightness(.82)}
+.work-visual article:first-child img{object-position:center 29%}
+.work-visual article:nth-child(2) img{object-position:center 25%}
+.work-visual article:last-child img{object-position:center 26%}
+.profile-copy{margin-bottom:3rem}
+.profile-meta{margin-top:2.5rem}
+
+@media(max-width:1120px) and (min-width:821px){
+  .site-nav{grid-template-columns:minmax(110px,1fr) auto minmax(110px,1fr);gap:1rem}
+  .nav-links{gap:1rem}
+  .nav-links a{font-size:.7rem}
+  .nav-brand,.has-scrolled .nav-brand{font-size:1.9rem}
+  .site-nav .nav-resume{padding-inline:.85rem;font-size:.72rem}
+}
+@media(max-width:820px){
+  .site-nav{height:74px;grid-template-columns:1fr auto auto;gap:.65rem;padding-inline:1rem}
+  .nav-links{display:none}
+  .nav-brand,.has-scrolled .nav-brand{font-size:2.05rem}
+  .site-nav .nav-resume{height:44px;padding-inline:.85rem;font-size:.7rem}
+  .site-nav .nav-menu{display:block;width:44px;height:44px}
+  .site-nav .nav-menu i{left:12px}
+  .menu-panel{padding-top:6.5rem}
+  .hero h1{top:auto}
+  .hero-media img{object-position:center 19%}
+  .about-grid img{object-position:center 22%}
+  .profile-copy{margin-bottom:2.5rem}
+}
+@media(max-width:520px){
+  .site-nav{padding-inline:.85rem;gap:.45rem}
+  .nav-brand,.has-scrolled .nav-brand{font-size:1.85rem}
+  .site-nav .nav-resume{height:42px;padding-inline:.7rem;font-size:.66rem}
+  .site-nav .nav-menu{width:42px;height:42px}
+  .site-nav .nav-menu i{left:11px}
+  .menu-panel nav a{min-height:clamp(56px,13svh,85px);line-height:1.02;letter-spacing:-.02em}
+  .menu-foot{position:relative;left:auto;right:auto;bottom:auto;margin-top:2rem}
+  .hero-media{filter:saturate(.9) contrast(1.04) brightness(.89)}
+  .work-visual img{object-position:center 26%}
+}
+@media(prefers-reduced-motion:reduce){
+  .nav-links a,.nav-links a::after{transition:none}
+}

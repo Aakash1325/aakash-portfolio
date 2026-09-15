@@ -2,6 +2,8 @@
   const root = document.querySelector("main");
   const menu = document.querySelector(".menu-panel");
   const menuButton = document.querySelector(".nav-menu");
+  const navLinks = [...document.querySelectorAll(".nav-links a")];
+  const navSections = navLinks.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
   const hero = document.querySelector(".hero");
   const heroMedia = document.querySelector(".hero-media");
   const about = document.querySelector(".about-statement");
@@ -18,6 +20,7 @@
     menuOpen = open;
     menu?.classList.toggle("open", open);
     menu?.setAttribute("aria-hidden", String(!open));
+    if (menu) menu.inert = !open;
     menuButton?.setAttribute("aria-expanded", String(open));
     menuButton?.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     document.body.style.overflow = open ? "hidden" : "";
@@ -83,6 +86,13 @@
       if (rect.top < vh * 0.96 && rect.bottom > 0) item.classList.add("is-visible");
     });
     document.documentElement.classList.toggle("has-scrolled", y > 80);
+    const currentSection = [...navSections].reverse().find((section) => section.getBoundingClientRect().top <= vh * 0.38);
+    navLinks.forEach((link) => {
+      const active = Boolean(currentSection && link.getAttribute("href") === `#${currentSection.id}`);
+      link.classList.toggle("is-active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
     if (hero) {
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const progress = reducedMotion ? 0 : Math.max(0, Math.min(1, y / Math.max(hero.offsetHeight * 0.82, 1)));
@@ -125,6 +135,7 @@
     if (!frame) frame = window.requestAnimationFrame(onFrame);
   };
 
+  if (menu) menu.inert = true;
   menuButton?.addEventListener("click", () => setMenu(!menuOpen));
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenu(false);
