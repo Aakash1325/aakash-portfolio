@@ -98,7 +98,7 @@ section[id],footer[id]{scroll-margin-top:5.75rem}
 /* Display type must keep its full glyph box visible at every animation state. */
 .hero h1{line-height:.98;letter-spacing:-.018em}
 .hero h2{line-height:1.08;letter-spacing:-.018em}
-.hero-copy{line-height:1.2;letter-spacing:-.012em}
+.hero-copy{max-width:23rem;line-height:1.2;letter-spacing:-.012em}
 .case-heading h2{line-height:1;letter-spacing:-.014em}
 .case-title h3{line-height:1.02;letter-spacing:-.016em}
 .about>h2{line-height:1.15;letter-spacing:-.018em}
