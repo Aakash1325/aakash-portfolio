@@ -98,17 +98,9 @@
       const progress = reducedMotion ? 0 : Math.max(0, Math.min(1, y / Math.max(hero.offsetHeight * 0.82, 1)));
       const mobile = window.innerWidth <= 820;
       hero.style.setProperty("--hero-title-y", `${-progress * (mobile ? 30 : 82)}px`);
-      hero.style.setProperty("--hero-title-opacity", String(1 - progress * 0.88));
       hero.style.setProperty("--hero-role-y", `${-progress * (mobile ? 18 : 48)}px`);
-      hero.style.setProperty("--hero-role-opacity", String(1 - progress * 0.76));
-      hero.style.setProperty("--hero-copy-y", `${-progress * (mobile ? 14 : 34)}px`);
-      hero.style.setProperty("--hero-copy-opacity", String(1 - progress));
-      hero.style.setProperty("--hero-actions-y", `${-progress * (mobile ? 10 : 24)}px`);
-      hero.style.setProperty("--hero-actions-opacity", String(1 - progress * 1.15));
-      hero.style.setProperty("--hero-bottom-y", `${progress * 14}px`);
-      hero.style.setProperty("--hero-bottom-opacity", String(1 - progress * 1.35));
       if (heroMedia) {
-        heroMedia.style.transform = `translate3d(0,${progress * (mobile ? 18 : 52)}px,0) scale(${1.015 + progress * 0.04})`;
+        heroMedia.style.transform = `translate3d(0,${progress * (mobile ? 6 : 14)}px,0)`;
       }
     }
     if (about) {
