@@ -50,3 +50,9 @@ svg{display:block;vertical-align:middle}img{display:block;max-width:100%}button{
 @media(max-width:380px){.brand{font-size:21px;letter-spacing:-1px}.nav nav{gap:12px}.nav-contact{padding:11px 10px;gap:5px}}
 
 .hero h1 .line-text,.hero-intro,.hero-description,.hero-actions,.hero-note{backface-visibility:hidden}
+
+/* Keep the first chapter within the opening viewport. The minimum lets the
+   content grow naturally on short screens or when text is enlarged. */
+.hero{min-height:calc(100vh - 94px);min-height:calc(100svh - 94px);display:flex;flex-direction:column;justify-content:center}
+@media(max-width:700px){.hero{min-height:calc(100vh - 72px);min-height:calc(100svh - 72px);padding-top:40px;padding-bottom:40px}}
+@media(max-height:760px){.hero{padding-top:40px;padding-bottom:40px}}
