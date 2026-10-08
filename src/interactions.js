@@ -39,11 +39,11 @@
   let reset;
   copy.addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText('aakashprince2004@gmail.com');
+      await navigator.clipboard.writeText('aakashh.contact@gmail.com');
       copy.textContent = 'Copied!';
       document.querySelector('[role="status"]').textContent = 'Email copied to clipboard';
       clearTimeout(reset);
       reset = setTimeout(() => { copy.textContent = 'Copy email'; document.querySelector('[role="status"]').textContent = ''; }, 2500);
-    } catch { window.location.href = 'mailto:aakashprince2004@gmail.com'; }
+    } catch { window.location.href = 'mailto:aakashh.contact@gmail.com'; }
   });
 })();
