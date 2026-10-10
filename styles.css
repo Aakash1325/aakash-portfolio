@@ -65,3 +65,17 @@ svg{display:block;vertical-align:middle}img{display:block;max-width:100%}button{
 @media(max-width:700px){.hero{min-height:calc(100vh - 72px);min-height:calc(100svh - 72px);padding-top:40px;padding-bottom:40px}}
 @media(max-height:760px){.hero{padding-top:40px;padding-bottom:40px}}
 @media(max-width:380px){.hero h1{font-size:clamp(34px,9.4vw,40px)}}
+
+/* Project previews follow each full image's native proportions. */
+.projects{align-items:start}
+.project:not(:first-child) .project-visual{aspect-ratio:auto;min-height:0;padding:55px 22px 56px}
+.project:not(:first-child) .project-visual>img{height:auto;max-height:none;object-fit:contain}
+.project-details{padding:0;animation:none;overflow:hidden}
+.project-details[hidden]{display:none}
+.project-details-inner{padding-top:25px}
+.project.reveal{opacity:0;translate:none;transform:translateY(28px) scale(.99);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+.project.reveal.visible{opacity:1;transform:none}
+.project:nth-child(2).reveal{transition-delay:.07s}
+.project:nth-child(3).reveal{transition-delay:.14s}
+@media(max-width:700px){.project:not(:first-child) .project-visual{aspect-ratio:auto;min-height:0;padding:47px 15px 48px}.project:nth-child(2).reveal,.project:nth-child(3).reveal{transition-delay:0s}}
+@media(prefers-reduced-motion:reduce){.project.reveal,.project.reveal.visible{opacity:1;transform:none;transition:none}}
