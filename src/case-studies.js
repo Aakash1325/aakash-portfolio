@@ -34,20 +34,26 @@ export const caseStudies = [
     tags: ['Responsive UI', 'Content hierarchy', 'Visual patterns']
   },
   {
-    name: 'AakashAgro', slug: 'aakash-agro', type: 'B2B EXPORT · WEB CONCEPT', kind: 'Concept study',
-    image: 'aakash-agro.webp', width: 1707, height: 960,
-    title: 'Building trust before the first enquiry.',
-    desc: 'A B2B export website concept centred on product information, sourcing context and enquiries.',
-    role: 'Independent concept · website design', status: 'Concept study',
-    problem: 'Trade buyers need enough context about products, sourcing and supplier credibility before starting a conversation.',
-    approach: 'I organised the concept around product categories, sourcing context and a direct enquiry path, with a visual direction that supports the information.',
-    delivery: 'The intended experience helps buyers find relevant details and make a more informed enquiry. This concept has no measured business outcome.',
+    name: 'NutaLink', slug: 'nutalink', type: 'AGRO B2B · WEBSITE DESIGN', kind: 'Professional work',
+    image: 'nutalink-hero.webp', width: 1920, height: 971, overviewImage: 'nutalink-full.webp', overviewWidth: 321, overviewHeight: 2048,
+    title: 'A clearer way into an agro business network.',
+    desc: 'A website design that introduces NutaLink’s agro business network through product discovery, business connections and clear next steps.',
+    role: 'UI/UX Designer · website design', status: 'Website design',
+    problem: 'NutaLink needs to explain both its agro product range and the wider business network. A visitor should be able to find a relevant route whether they want to explore products or connect their business.',
+    approach: 'I organised the site from a concise introduction into visual product categories, paths for product discovery and business participation, growth services, member previews and an enquiry route.',
+    delivery: 'The design makes the range of the network easier to scan and gives visitors a clear path to explore, join or enquire. This describes the intended experience; no traffic or lead result is claimed.',
     decisions: [
-      ['Make products scannable', 'Categories provide a clearer way into the catalogue than a single undifferentiated list.'],
-      ['Add sourcing context', 'The concept gives product origin and supplier information a place in the browsing experience.'],
-      ['Support an enquiry', 'The page points visitors towards contact, which is the useful next action for a B2B export concept.']
+      ['Show two immediate actions', 'The hero gives visitors a direct choice between exploring products and joining NutaLink, without forcing everyone through the same path.'],
+      ['Let categories lead discovery', 'Photographic agro categories make the product range tangible before the site explains the broader network.'],
+      ['Build from discovery to contact', 'The page moves from categories and business paths through growth services and company examples to an enquiry form and closing invitation.']
     ],
-    next: 'Validate which details buyers actually need before enquiring, then test the navigation and enquiry path with representative users.',
-    tags: ['Web concept', 'B2B experience', 'Visual direction']
+    next: 'The full-page visual shows the website structure and visual direction. My work here is the site design; it is not a claim that I designed the complete NutaLink product or measured its performance.',
+    overviewNotes: [
+      ['01 / INTRODUCE', 'A market-connection message with Explore Products and Join NutaLink as the first choices.'],
+      ['02 / DISCOVER', 'Image-led agro product categories and distinct content for people exploring products or growing their business.'],
+      ['03 / UNDERSTAND', 'Growth services, reasons to choose the network and business previews add context beyond the category grid.'],
+      ['04 / CONNECT', 'An enquiry form and a final invitation give interested visitors a way to continue.']
+    ],
+    tags: ['B2B website', 'Content hierarchy', 'Visual direction']
   }
 ];
