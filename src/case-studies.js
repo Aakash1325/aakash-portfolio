@@ -41,7 +41,7 @@ export const caseStudies = [
   },
   {
     name: 'NutaLink', slug: 'nutalink', type: 'AGRO B2B · WEBSITE DESIGN', kind: 'Professional work',
-    image: 'nutalink-hero.webp', width: 1920, height: 971, overviewImage: 'nutalink-page.webp', overviewWidth: 1920, overviewHeight: 12511,
+    image: 'nutalink-hero.webp', width: 1920, height: 971, overviewImage: 'nutalink-page-v2.webp', overviewWidth: 1920, overviewHeight: 12233,
     title: 'A clearer way into an agro business network.',
     desc: 'A website design that introduces NutaLink’s agro business network through product discovery, business connections and clear next steps.',
     role: 'UI/UX Designer · website design', status: 'Website design',
