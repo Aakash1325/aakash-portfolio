@@ -1,7 +1,7 @@
 export const caseStudies = [
   {
     name: 'Parking Spot', slug: 'parking-spot', type: 'MOBILITY · APP CONCEPT', kind: 'Independent project',
-    image: 'parking-spot-full.webp', width: 1920, height: 991,
+    image: 'parking-spot-full.webp', width: 1920, height: 991, overviewImage: 'parking-spot-overview.webp', overviewWidth: 283, overviewHeight: 2048,
     title: 'A better arrival starts before the drive.',
     desc: 'An independent parking app concept, introduced through a responsive website while the app is still planned.',
     role: 'Independent concept · product direction and website design', status: 'Website designed · app concept',
@@ -14,6 +14,12 @@ export const caseStudies = [
       ['Explain the direction first', 'The responsive website communicates the proposed service before the app exists; it is not presented as proof of a working booking flow.']
     ],
     next: 'The next design step is to map and test the search, comparison and booking journey, including how space availability and trust would work in practice.',
+    overviewNotes: [
+      ['01 / FRAME THE NEED', 'The opening and city imagery connect arrival with the difficulty of finding a suitable place to park.'],
+      ['02 / SHOW THE OPTIONS', 'Public parking, operated facilities and homeowner spaces are introduced as different ways to find a spot.'],
+      ['03 / EXPLAIN THE JOURNEY', 'The page moves from looking to knowing, with a destination-led search concept and information to help compare options.'],
+      ['04 / INCLUDE HOMEOWNERS', 'A second path shows how an unused space at home could become useful to someone else, followed by details and common questions.']
+    ],
     tags: ['Product concept', 'UX direction', 'Responsive web']
   },
   {

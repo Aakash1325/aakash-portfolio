@@ -134,7 +134,7 @@ svg{display:block;vertical-align:middle}img{display:block;max-width:100%}button{
 .case-overview>div{position:sticky;top:125px;border-top:1px solid #ddd;padding-top:30px}
 .case-overview h2{margin:20px 0;font-size:clamp(38px,4vw,56px)}
 .case-overview>div>p{max-width:560px;color:#555;font-size:16px;line-height:1.7}
-.case-overview img{display:block;width:321px;max-width:100%;height:auto}
+.case-overview img{display:block;width:auto;max-width:100%;height:auto;justify-self:end}
 .case-overview-notes{margin-top:50px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .case-overview-notes>div{border-top:1px solid #d8d8d8;padding-top:15px}
 .case-overview-notes strong{font-size:11px;letter-spacing:.04em;font-weight:500}
