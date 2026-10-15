@@ -130,11 +130,12 @@ svg{display:block;vertical-align:middle}img{display:block;max-width:100%}button{
 .case-footer .wrap{display:flex;justify-content:space-between;gap:25px;font-size:14px}
 @media(max-width:900px){.case-statement{grid-template-columns:140px 1fr}.case-statement p{grid-column:2}.case-outcome{grid-template-columns:140px 1fr}.case-outcome h2{grid-column:2;grid-row:1}.case-outcome p,.case-outcome p:last-child{grid-column:2;grid-row:auto}.case-decisions{gap:16px}}
 @media(max-width:700px){.case-hero{padding-top:45px;padding-bottom:35px}.case-back{margin-bottom:45px;font-size:12px}.case-hero h1{font-size:clamp(40px,10vw,65px)}.case-lede{font-size:18px}.case-meta{gap:18px;margin-top:45px}.case-meta p{font-size:13px}.case-image img{border-radius:8px}.case-body{padding-top:55px;padding-bottom:60px}.case-statement,.case-outcome{display:block;padding:25px 0 50px}.case-statement h2,.case-outcome h2{margin:15px 0}.case-statement p,.case-outcome p{font-size:15px}.case-outcome p:last-child{margin-top:15px}.case-section{padding-top:25px;margin-bottom:60px}.case-section h2{margin:15px 0 35px}.case-decisions{grid-template-columns:1fr;gap:35px}.case-decision h3{margin:17px 0 8px}.case-next{margin-top:60px}.case-footer{margin:0 12px 12px}.case-footer .wrap{font-size:12px;flex-wrap:wrap}}
-.case-overview{display:grid;grid-template-columns:minmax(0,1fr) 321px;gap:clamp(40px,8vw,120px);padding-top:100px;padding-bottom:30px;align-items:start}
+.case-overview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,56%);gap:clamp(35px,5vw,72px);padding-top:100px;padding-bottom:30px;align-items:start}
 .case-overview>div{position:sticky;top:125px;border-top:1px solid #ddd;padding-top:30px}
 .case-overview h2{margin:20px 0;font-size:clamp(38px,4vw,56px)}
 .case-overview>div>p{max-width:560px;color:#555;font-size:16px;line-height:1.7}
-.case-overview img{display:block;width:auto;max-width:100%;height:auto;justify-self:end}
+.case-overview img{display:block;width:100%;height:auto;justify-self:end}
+.case-overview-open{display:inline-block;margin-top:20px;border-bottom:1px solid currentColor;padding-bottom:5px;font-size:13px;text-decoration:none;color:inherit}
 .case-overview-notes{margin-top:50px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .case-overview-notes>div{border-top:1px solid #d8d8d8;padding-top:15px}
 .case-overview-notes strong{font-size:11px;letter-spacing:.04em;font-weight:500}

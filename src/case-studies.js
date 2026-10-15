@@ -1,7 +1,7 @@
 export const caseStudies = [
   {
     name: 'Parking Spot', slug: 'parking-spot', type: 'MOBILITY · APP CONCEPT', kind: 'Independent project',
-    image: 'parking-spot-full.webp', width: 1920, height: 991, overviewImage: 'parking-spot-overview.webp', overviewWidth: 283, overviewHeight: 2048,
+    image: 'parking-spot-full.webp', width: 1920, height: 991, overviewImage: 'parking-spot-page.webp', overviewWidth: 1920, overviewHeight: 13876,
     title: 'A better arrival starts before the drive.',
     desc: 'An independent parking app concept, introduced through a responsive website while the app is still planned.',
     role: 'Independent concept · product direction and website design', status: 'Website designed · app concept',
@@ -41,7 +41,7 @@ export const caseStudies = [
   },
   {
     name: 'NutaLink', slug: 'nutalink', type: 'AGRO B2B · WEBSITE DESIGN', kind: 'Professional work',
-    image: 'nutalink-hero.webp', width: 1920, height: 971, overviewImage: 'nutalink-full.webp', overviewWidth: 321, overviewHeight: 2048,
+    image: 'nutalink-hero.webp', width: 1920, height: 971, overviewImage: 'nutalink-page.webp', overviewWidth: 1920, overviewHeight: 12511,
     title: 'A clearer way into an agro business network.',
     desc: 'A website design that introduces NutaLink’s agro business network through product discovery, business connections and clear next steps.',
     role: 'UI/UX Designer · website design', status: 'Website design',
