@@ -142,3 +142,8 @@ svg{display:block;vertical-align:middle}img{display:block;max-width:100%}button{
 @media(max-width:900px){.case-overview{gap:35px}.case-overview-notes{grid-template-columns:1fr;gap:16px}}
 @media(max-width:700px){.case-overview{grid-template-columns:1fr;padding-top:55px;gap:35px}.case-overview>div{position:static}.case-overview-notes{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:35px}.case-overview img{margin:auto}}
 @media(max-width:380px){.case-overview-notes{grid-template-columns:1fr}}
+/* Keep project labels clear of artwork, including logos in screenshot corners. */
+.project-visual,.project:first-child .project-visual,.project:not(:first-child) .project-visual{margin-top:34px}
+.project-overline{top:-28px;left:0;right:0;color:#666;font-size:11px}
+.project-overline>span:first-child,.project-overline>span:last-child{border:0;background:transparent;border-radius:0;padding:0;color:inherit}
+@media(max-width:700px){.project-visual,.project:first-child .project-visual,.project:not(:first-child) .project-visual{margin-top:30px}.project-overline{top:-25px;font-size:9px}}
