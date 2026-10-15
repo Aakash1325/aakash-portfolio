@@ -61,7 +61,7 @@
     const previous = animations.get(detail);
     const currentHeight = detail.hidden ? 0 : detail.getBoundingClientRect().height;
     const currentOpacity = detail.hidden ? 0 : Number(getComputedStyle(detail).opacity);
-    const items = [...detail.querySelectorAll('.project-details-inner h4, .detail-grid > div, .tags')];
+    const items = [...detail.querySelectorAll('.project-details-inner h4, .detail-grid > div, .case-link')];
     const itemStates = items.map(item => ({
       opacity: detail.hidden ? 0 : Number(getComputedStyle(item).opacity),
       transform: detail.hidden ? 'translateY(12px)' : getComputedStyle(item).transform
