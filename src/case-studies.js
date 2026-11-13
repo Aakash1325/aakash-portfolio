@@ -22,14 +22,14 @@ export const caseStudies = [
     reflection:'Approved before-and-after screens and review feedback would make individual decisions and effects clearer.'
   },
   {
-    name:'NutaLink',slug:'nutalink',category:'AGRICULTURAL B2B PLATFORM',kind:'Company project',image:null,visual:'abstract',
+    name:'NutaLink',slug:'nutalink',category:'AGRICULTURAL B2B PLATFORM',kind:'Company project',image:'nutalink-home-public.webp',visual:'shared-preview',imageAlt:'NutaLink homepage design preview supplied by Aakash',
     title:'From product design to responsive frontend.',
     desc:'Sole UI/UX design, interactive prototyping, and frontend implementation for a company project in testing.',
     role:'Sole UI/UX designer and frontend implementer',ownership:'Company-owned project; I completed the interface design and frontend implementation.',status:'Testing phase',
     context:'NutaLink is an agricultural B2B platform. The work calls for a consistent interface across product discovery and business-oriented journeys.',
     contribution:'I handled the complete UI/UX design, interaction design, interactive prototypes, responsive layouts, and frontend implementation. This describes the interface and frontend scope, not backend or full-stack ownership.',
-    decisions:[['Design and implementation in one loop','Owning both interface design and frontend work let me check how layouts and interactions behave in the browser.'],['Build adaptable patterns','Responsive structure and reusable interface patterns supported consistency across the experience.'],['Keep the work private during testing','This case study uses an abstract illustration and text because the actual screens are not approved for publication.']],
-    outcome:'The project is in testing. No private interface screens, adoption figures, or launch results are shown.',
+    decisions:[['Design and implementation in one loop','Owning both interface design and frontend work let me check how layouts and interactions behave in the browser.'],['Build adaptable patterns','Responsive structure and reusable interface patterns supported consistency across the experience.'],['Present the current direction clearly','The supplied homepage preview introduces the agricultural network and the paths for buyers and suppliers.']],
+    outcome:'The project is in testing. The supplied homepage design illustrates its current direction; no adoption figures or launch results are claimed.',
     reflection:'After release and approval, this case study can include selected screens and a more detailed account of the implementation.'
   },
   {

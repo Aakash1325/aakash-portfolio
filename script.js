@@ -1,5 +1,60 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const frame = document.createElement('div');
+    frame.className = 'hero-media';
+    const video = document.createElement('video');
+    video.className = 'hero-video';
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+    video.poster = './media/hero-poster.webp';
+    video.setAttribute('aria-hidden', 'true');
+    const source = document.createElement('source');
+    source.src = './media/hero-nature.mp4';
+    source.type = 'video/mp4';
+    video.append(source);
+    const shade = document.createElement('div');
+    shade.className = 'hero-shade';
+    shade.setAttribute('aria-hidden', 'true');
+    const content = document.createElement('div');
+    content.className = 'hero-content';
+    while (hero.firstChild) content.append(hero.firstChild);
+    frame.append(video, shade, content);
+    hero.append(frame);
+    const updatePlayback = () => {
+      if (reducedMotion.matches || document.hidden || !video.dataset.inView) video.pause();
+      else video.play().catch(() => {});
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        video.dataset.inView = entries[0].isIntersecting ? 'true' : '';
+        updatePlayback();
+      }, { threshold: 0.05 }).observe(video);
+    } else video.dataset.inView = 'true';
+    reducedMotion.addEventListener?.('change', updatePlayback);
+    document.addEventListener('visibilitychange', updatePlayback);
+    updatePlayback();
+  }
+  const nutalink = [...document.querySelectorAll('.project')].find(article => article.querySelector('.project-info h3')?.textContent.trim() === 'NutaLink');
+  if (nutalink) {
+    const art = nutalink.querySelector('.nutalink-art');
+    if (art) {
+      const image = document.createElement('img');
+      image.src = './project-covers/nutalink-home-public.webp';
+      image.width = 1920;
+      image.height = 936;
+      image.alt = 'NutaLink homepage design preview';
+      image.loading = 'lazy';
+      art.replaceWith(image);
+      nutalink.querySelector('.project-visual')?.classList.remove('nutalink-visual');
+    }
+    const currentState = nutalink.querySelector('.detail-grid > div:nth-child(3) p');
+    if (currentState) currentState.textContent = 'The homepage design shows the responsive frontend direction and the visual system I carried into implementation.';
+  }
   const reveal = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
@@ -138,13 +193,16 @@
 
   const copy = document.querySelector('.copy');
   let reset;
-  copy.addEventListener('click', async () => {
+  copy?.addEventListener('click', async () => {
+    const emailLink = document.querySelector('a.email[href^="mailto:"]');
+    const address = emailLink?.getAttribute('href')?.replace(/^mailto:/, '');
+    if (!address) return;
     try {
-      await navigator.clipboard.writeText('aakashh.contact@gmail.com');
+      await navigator.clipboard.writeText(address);
       copy.textContent = 'Copied!';
       document.querySelector('[role="status"]').textContent = 'Email copied to clipboard';
       clearTimeout(reset);
       reset = setTimeout(() => { copy.textContent = 'Copy email'; document.querySelector('[role="status"]').textContent = ''; }, 2500);
-    } catch { window.location.href = 'mailto:aakashh.contact@gmail.com'; }
+    } catch { emailLink.click(); }
   });
 })();

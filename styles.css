@@ -157,3 +157,33 @@ svg{display:block;vertical-align:middle}img{display:block;max-width:100%}button{
 .case-caption{font-size:12px;color:#666;line-height:1.5;margin-top:12px}.case-meta{grid-template-columns:1fr 1.6fr 1fr}.case-hero h1{max-width:1100px}.case-overview img{border-radius:9px}.case-hero .eyebrow,.project-info .eyebrow{text-transform:uppercase}
 @media(max-width:900px){.support-projects{grid-template-columns:1fr}.support-projects .project-visual>img{aspect-ratio:auto;object-fit:contain}.case-meta{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.hero-description{font-size:16px}.section-heading>p,.project-info p,.detail-grid p,.about p,.skill p,.timeline p{font-size:15px}.project-role{font-size:12px}.support-heading{display:block;margin-top:70px}.support-heading h2{margin-top:12px}.support-heading p{margin-top:12px}.support-projects{gap:45px}.nutalink-art{aspect-ratio:1.35;min-height:250px}.nutalink-symbol{font-size:125px;top:22%}.nutalink-art-label{font-size:9px;letter-spacing:.1em}.case-meta{grid-template-columns:1fr}.case-nutalink-art{aspect-ratio:1.35;min-height:250px}.case-hero h1{font-size:clamp(38px,10vw,65px)}.socials{flex-wrap:wrap}}
+
+/* Responsive cinematic hero. The poster keeps the frame useful before playback. */
+.hero.wrap{min-height:0;display:block;padding-top:22px;padding-bottom:38px;text-align:left}
+.hero-media{position:relative;isolation:isolate;overflow:hidden;width:100%;height:calc(100svh - 165px);min-height:550px;max-height:780px;border-radius:26px;background:#17322b url('./media/hero-poster.webp') center center/cover no-repeat;animation:hero-frame-in 1.2s cubic-bezier(.22,1,.36,1) both}
+.hero-video,.hero-shade{position:absolute;inset:0;width:100%;height:100%}
+.hero-video{object-fit:cover;object-position:50% 50%;z-index:-2}
+.hero-shade{z-index:-1;background:linear-gradient(90deg,rgba(4,23,13,.86) 0%,rgba(6,25,15,.72) 35%,rgba(7,25,15,.24) 75%),linear-gradient(0deg,rgba(4,19,10,.48),transparent 65%)}
+.hero-content{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;padding:clamp(34px,5vw,72px);color:#fff}
+.hero-intro{justify-content:flex-start;color:#f3f4ed}.hero-intro img{border:2px solid #ffffff9c}
+.hero h1{font-size:clamp(54px,6.7vw,92px);max-width:890px;line-height:1.02;margin:24px 0 22px;color:#fff}
+.hero-muted{color:#d8ebd8}.hero-description{font-size:clamp(17px,1.55vw,21px);line-height:1.55;color:#f0f2e9;max-width:610px;margin:0;text-align:left}
+.hero-actions{justify-content:flex-start;margin-top:29px}.hero .button-primary{background:#fff;color:#16312a}.hero .button-primary:hover{background:#e8f2e6;box-shadow:0 7px 20px #0003}.hero .button-secondary{color:#fff;border-color:#ffffffa8;background:#ffffff18}.hero .button-secondary:hover{background:#ffffff36}
+.hero-note{justify-content:flex-start;color:#e5e9e0;margin-top:35px}.hero-note span+span{border-left-color:#ffffff70}
+@keyframes hero-frame-in{from{opacity:.45;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
+/* Give the work more breathing room and show the complete wide Vidmagin design. */
+.work .projects,.work .support-heading{max-width:1030px;margin-inline:auto}.work .projects{gap:62px}.work .support-heading{margin-top:82px;margin-bottom:30px}
+.support-projects .project-visual,.support-projects .project:first-child .project-visual{aspect-ratio:1.8;display:flex;align-items:center;justify-content:center;padding:26px;background:#f6f6f6;border-radius:12px;overflow:hidden}
+.support-projects .project-visual>img,.support-projects .project:first-child .project-visual>img{width:100%;height:100%;max-height:100%;aspect-ratio:auto;object-fit:contain;object-position:center;border-radius:4px}
+/* Each chapter enters in its own direction. */
+.about .portrait.reveal{translate:-36px 0;transition:opacity 1s,translate 1.15s cubic-bezier(.16,1,.3,1)}.about .portrait.reveal.visible{translate:0 0}
+.about .about-copy.reveal{translate:36px 0;transition:opacity 1s .08s,translate 1.15s .08s cubic-bezier(.16,1,.3,1)}.about .about-copy.reveal.visible{translate:0 0}
+.skills-grid .skill.reveal{translate:0 30px;transform:rotate(-1deg);transition:opacity .9s,translate 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}.skills-grid .skill.reveal.visible{translate:0 0;transform:none}
+.skills-grid .skill:nth-child(2).reveal{transition-delay:110ms}.skills-grid .skill:nth-child(3).reveal{transition-delay:220ms}
+.timeline article.reveal{translate:25px 0;transition:opacity .9s,translate 1.05s cubic-bezier(.16,1,.3,1)}.timeline article.reveal.visible{translate:0 0}
+.timeline article:nth-child(2).reveal{transition-delay:80ms}.timeline article:nth-child(3).reveal{transition-delay:160ms}
+footer .reveal{transform:scale(.975);transition:opacity 1s,transform 1.2s cubic-bezier(.16,1,.3,1)}footer .reveal.visible{transform:none}
+@media(max-width:1000px){.hero.wrap{padding-top:20px;padding-bottom:35px}.hero-media{height:calc(100svh - 140px);min-height:560px}.hero-video{object-position:56% center}.hero-content{padding:42px}.hero h1{font-size:clamp(48px,7.5vw,76px)}}
+@media(max-width:700px){.hero.wrap{padding-top:16px;padding-bottom:35px}.hero-media{height:calc(100svh - 100px);min-height:580px;max-height:760px;border-radius:21px;background-position:54% center}.hero-video{object-position:54% center}.hero-shade{background:linear-gradient(0deg,rgba(4,21,11,.96) 0%,rgba(5,23,12,.86) 37%,rgba(5,23,12,.38) 68%,rgba(3,18,10,.25) 100%)}.hero-content{justify-content:flex-end;padding:28px 24px 34px}.hero h1{font-size:clamp(33px,8.2vw,55px);line-height:1.04;margin:18px 0 18px}.hero-intro{font-size:11px}.hero-description{font-size:15px;line-height:1.5}.hero-actions{margin-top:22px}.hero-note{margin-top:24px;font-size:10px;gap:11px}.hero-note span+span{padding-left:11px}.work .projects{gap:48px}.support-projects .project-visual,.support-projects .project:first-child .project-visual{aspect-ratio:1.65;padding:16px}}
+@media(max-width:380px){.hero-media{min-height:560px}.hero-content{padding:24px 20px 27px}.hero h1{font-size:clamp(31px,8vw,36px)}.hero-actions{gap:8px}.hero .button-primary,.hero .button-secondary{padding:12px 14px;font-size:11px}.hero-note{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.hero-video{display:none}.hero-media{animation:none}.about .portrait.reveal,.about .about-copy.reveal,.skills-grid .skill.reveal,.timeline article.reveal,footer .reveal{opacity:1;translate:none;transform:none;transition:none}}
