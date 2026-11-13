@@ -1,65 +1,60 @@
 export const caseStudies = [
   {
-    name: 'Parking Spot', slug: 'parking-spot', type: 'MOBILITY · APP CONCEPT', kind: 'Independent project',
-    image: 'parking-spot-full.webp', width: 1920, height: 991, overviewImage: 'parking-spot-page.webp', overviewWidth: 1920, overviewHeight: 13876,
-    title: 'A better arrival starts before the drive.',
-    desc: 'An independent parking app concept, introduced through a responsive website while the app is still planned.',
-    role: 'Independent concept · product direction and website design', status: 'Website designed · app concept',
-    problem: 'At unfamiliar destinations, drivers often start looking for parking only when they arrive. They have little time to understand which spaces are available or compare their options.',
-    approach: 'I proposed one place to discover public, operated and homeowner spaces, with useful information for comparing options before a journey. I designed the website first to explain this direction ahead of the app build.',
-    delivery: 'The intended value is a clearer arrival plan for drivers and a way for homeowners to make unused spaces discoverable. This is a product hypothesis, not a measured outcome.',
-    decisions: [
-      ['Start before arrival', 'The concept focuses on choosing a suitable space while planning the journey, when a driver has time to compare options.'],
-      ['Bring different spaces together', 'Public, operated and homeowner spaces are considered in one discovery experience, so availability and suitability can be compared in context.'],
-      ['Explain the direction first', 'The responsive website communicates the proposed service before the app exists; it is not presented as proof of a working booking flow.']
-    ],
-    next: 'The next design step is to map and test the search, comparison and booking journey, including how space availability and trust would work in practice.',
-    overviewNotes: [
-      ['01 / FRAME THE NEED', 'The opening and city imagery connect arrival with the difficulty of finding a suitable place to park.'],
-      ['02 / SHOW THE OPTIONS', 'Public parking, operated facilities and homeowner spaces are introduced as different ways to find a spot.'],
-      ['03 / EXPLAIN THE JOURNEY', 'The page moves from looking to knowing, with a destination-led search concept and information to help compare options.'],
-      ['04 / INCLUDE HOMEOWNERS', 'A second path shows how an unused space at home could become useful to someone else, followed by details and common questions.']
-    ],
-    tags: ['Product concept', 'UX direction', 'Responsive web']
+    name:'FITTEX',slug:'fittex',category:'APPAREL ERP / WEBSITE',kind:'Professional work',image:'fittex-public.webp',visual:'public',url:'https://fittex.io/',
+    title:'A modern front door for established apparel software.',
+    desc:'A public website designed from end to end, alongside selected new and redesigned interfaces in an existing ERP.',
+    role:'Website designer; ERP UI contributor',ownership:'Sole designer of the current live website. Contributor to selected ERP screens; the platform predates my involvement.',status:'Live public website',
+    context:'FITTEX is an established ERP for apparel and textile businesses. The public site introduces the platform; the software supports operational work behind it.',
+    contribution:'I designed the current public website, including its structure, product presentation, responsive layouts, navigation, and calls to action. Within the existing ERP, I designed new screens and redesigned selected screens spanning dashboards, reports, forms, listings, subscriptions, billing, and account interfaces.',
+    decisions:[['Present the platform in a readable sequence','The public website moves from the product promise into capabilities and next steps, giving visitors a route through a broad software offering.'],['Design for business tasks','My ERP contribution covered selected operational interfaces, where information hierarchy, forms, and repeatable patterns matter.'],['Carry consistency across surfaces','I worked with responsive layouts and interface patterns so the public site and selected product screens feel coherent.']],
+    outcome:'The website is live. The screenshot documents the public experience; private ERP screens are intentionally excluded. No conversion or product performance result is claimed.',
+    reflection:'A fuller case study would pair approved ERP examples with implementation notes and evidence from users or product analytics.'
   },
   {
-    name: 'Vidmagin', slug: 'vidmagin', type: 'HR TECH · WEBSITE REDESIGN', kind: 'Professional work',
-    image: 'vidmagin.webp', width: 2400, height: 812,
-    title: 'Making a complex product easier to understand.',
-    desc: 'A responsive website redesign focused on making Vidmagin’s product value and next steps clearer.',
-    role: 'UI/UX Designer · website redesign', status: 'Professional project',
-    problem: 'The website needed to explain a broad hiring product without asking visitors to work through an overloaded page.',
-    approach: 'I reorganised the content into a clearer sequence, designed responsive layouts and established reusable visual patterns for implementation.',
-    delivery: 'The redesign gives prospective teams a more direct path through product information and gives developers a more consistent design direction. No conversion or usability lift is claimed here.',
-    decisions: [
-      ['Lead with comprehension', 'The content sequence introduces the product value before asking a prospective team to explore deeper details.'],
-      ['Make next steps visible', 'The page hierarchy is intended to help visitors understand what to do after reading about the product.'],
-      ['Design across screen sizes', 'Responsive layouts and repeatable visual patterns make the proposed experience easier to maintain during handoff.']
-    ],
-    next: 'To document the work more completely, I would show the original site, content hierarchy decisions, responsive screens and feedback from review or implementation.',
-    tags: ['Responsive UI', 'Content hierarchy', 'Visual patterns']
+    name:'Kamblis',slug:'kamblis',category:'B2B MARKETPLACE',kind:'Professional work',image:'kamblis-public.webp',visual:'public',url:'https://www.kamblis.com/',
+    title:'Making business and product discovery easier to follow.',
+    desc:'Collaborative interface design for a uniforms and linens business network.',
+    role:'Product designer, in collaboration with another designer',ownership:'One of two collaborating designers, with a mix of individual and shared design work.',status:'Public website available',
+    context:'Kamblis connects businesses in the uniforms and linens industry. Marketplace interfaces need to make products, members, and next steps understandable across different user goals.',
+    contribution:'I worked with a fellow designer on the product experience, contributing both independently and jointly. Our design work involved interface organization, discovery paths, product and member information, responsive behavior, and reusable patterns.',
+    decisions:[['Give discovery a clear structure','Categories, navigation, and product information need a hierarchy that supports scanning before detailed comparison.'],['Treat members and products as connected paths','Business identity and product detail should each help a visitor understand whether a connection is relevant.'],['Plan for smaller screens','Responsive layouts keep key content and actions legible as the marketplace adapts to narrower viewports.']],
+    outcome:'The public screenshot gives context for the platform. It does not assign every visible feature to my individual contribution, and no measured discovery improvement is claimed.',
+    reflection:'Approved before-and-after screens and review feedback would make individual decisions and effects clearer.'
   },
   {
-    name: 'NutaLink', slug: 'nutalink', type: 'AGRO B2B · WEBSITE DESIGN', kind: 'Professional work',
-    image: 'nutalink-hero.webp', width: 1920, height: 971, overviewImage: 'nutalink-page-v2.webp', overviewWidth: 1920, overviewHeight: 12233,
-    title: 'A clearer way into an agro business network.',
-    desc: 'A website design that introduces NutaLink’s agro business network through product discovery, business connections and clear next steps.',
-    role: 'UI/UX Designer · website design', status: 'Website design',
-    problem: 'NutaLink needs to explain both its agro product range and the wider business network. A visitor should be able to find a relevant route whether they want to explore products or connect their business.',
-    approach: 'I organised the site from a concise introduction into visual product categories, paths for product discovery and business participation, growth services, member previews and an enquiry route.',
-    delivery: 'The design makes the range of the network easier to scan and gives visitors a clear path to explore, join or enquire. This describes the intended experience; no traffic or lead result is claimed.',
-    decisions: [
-      ['Show two immediate actions', 'The hero gives visitors a direct choice between exploring products and joining NutaLink, without forcing everyone through the same path.'],
-      ['Let categories lead discovery', 'Photographic agro categories make the product range tangible before the site explains the broader network.'],
-      ['Build from discovery to contact', 'The page moves from categories and business paths through growth services and company examples to an enquiry form and closing invitation.']
-    ],
-    next: 'The full-page visual shows the website structure and visual direction. My work here is the site design; it is not a claim that I designed the complete NutaLink product or measured its performance.',
-    overviewNotes: [
-      ['01 / INTRODUCE', 'A market-connection message with Explore Products and Join NutaLink as the first choices.'],
-      ['02 / DISCOVER', 'Image-led agro product categories and distinct content for people exploring products or growing their business.'],
-      ['03 / UNDERSTAND', 'Growth services, reasons to choose the network and business previews add context beyond the category grid.'],
-      ['04 / CONNECT', 'An enquiry form and a final invitation give interested visitors a way to continue.']
-    ],
-    tags: ['B2B website', 'Content hierarchy', 'Visual direction']
+    name:'NutaLink',slug:'nutalink',category:'AGRICULTURAL B2B PLATFORM',kind:'Company project',image:null,visual:'abstract',
+    title:'From product design to responsive frontend.',
+    desc:'Sole UI/UX design, interactive prototyping, and frontend implementation for a company project in testing.',
+    role:'Sole UI/UX designer and frontend implementer',ownership:'Company-owned project; I completed the interface design and frontend implementation.',status:'Testing phase',
+    context:'NutaLink is an agricultural B2B platform. The work calls for a consistent interface across product discovery and business-oriented journeys.',
+    contribution:'I handled the complete UI/UX design, interaction design, interactive prototypes, responsive layouts, and frontend implementation. This describes the interface and frontend scope, not backend or full-stack ownership.',
+    decisions:[['Design and implementation in one loop','Owning both interface design and frontend work let me check how layouts and interactions behave in the browser.'],['Build adaptable patterns','Responsive structure and reusable interface patterns supported consistency across the experience.'],['Keep the work private during testing','This case study uses an abstract illustration and text because the actual screens are not approved for publication.']],
+    outcome:'The project is in testing. No private interface screens, adoption figures, or launch results are shown.',
+    reflection:'After release and approval, this case study can include selected screens and a more detailed account of the implementation.'
+  },
+  {
+    name:'Toodhu',slug:'toodhu',category:'BUSINESS SOFTWARE',kind:'Professional work',image:'toodhu-public.webp',visual:'public',url:'https://www.toodhu.com/',
+    title:'Designing connected business workflows.',
+    desc:'Collaborative design work on interfaces for business management and teamwork.',
+    role:'Product designer, in collaboration with another designer',ownership:'Individual screen contributions and shared design work with a fellow designer.',status:'Public website available',
+    context:'Toodhu provides tools for business management and collaboration. These experiences need to communicate information, actions, and workflow states clearly.',
+    contribution:'I worked alongside another designer on the interface experience, with a mix of independently designed areas and joint work. The work involved business-focused layouts, information hierarchy, reusable patterns, and responsive design.',
+    decisions:[['Make actions and status easy to scan','Business workflows benefit from a clear distinction between information, current state, and next action.'],['Use repeatable interface patterns','Shared patterns help related screens feel connected as a product grows.'],['Design together, then align details','Collaboration required consistency across individual contributions and jointly developed areas.']],
+    outcome:'The public site establishes the product context. This case study does not claim ownership of every feature or a measured business outcome.',
+    reflection:'Approved product screens and design review notes would help show the specific areas I handled.'
+  },
+  {
+    name:'Vidmagin',slug:'vidmagin',category:'HR TECH / WEBSITE',kind:'Supporting project',image:'vidmagin.webp',visual:'public',
+    title:'A clearer introduction to a hiring product.',desc:'Responsive website redesign focused on page structure and product communication.',role:'UI/UX designer',ownership:'Website redesign contribution during my Vidmagin role.',status:'Design work',
+    context:'The website needed a clear way to introduce a broad hiring product to prospective teams.',contribution:'I designed responsive page layouts, organized information hierarchy and navigation, and developed consistent visual patterns for the proposed website experience.',
+    decisions:[['Lead with comprehension','Introduce the product value before deeper detail.'],['Make next steps visible','Use page hierarchy to guide a visitor toward relevant information.'],['Carry patterns across sizes','Adapt layout and repeated elements for responsive handoff.']],
+    outcome:'The work shows design direction and responsive structure; it does not claim measured conversion or usability results.',reflection:'Before-and-after context and implementation feedback would strengthen the case.'
+  },
+  {
+    name:'Parking Spot',slug:'parking-spot',category:'MOBILITY / CONCEPT',kind:'Independent concept',image:'parking-spot-full.webp',visual:'public',
+    title:'Plan the arrival before the drive.',desc:'A parking app concept introduced through a responsive website; the app remains planned.',role:'Independent concept and website designer',ownership:'Independent product direction and website design.',status:'Website designed; app planned',
+    context:'At unfamiliar destinations, drivers may need a better way to compare parking options before arriving.',contribution:'I proposed a discovery experience spanning public, operated, and homeowner spaces, and designed the website to communicate the concept ahead of an app build.',
+    decisions:[['Start before arrival','The concept favors planning while there is time to compare options.'],['Bring options together','Different space types can be considered in one discovery journey.'],['Explain before building','The website communicates a proposed service, not a working booking flow.']],
+    outcome:'This is a product hypothesis and website design. The app and user outcomes have not been validated.',reflection:'The next step is to test search, comparison, availability, and trust in the proposed journey.'
   }
 ];
