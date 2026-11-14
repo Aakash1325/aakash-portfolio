@@ -3,34 +3,82 @@
   const video = document.querySelector('.hero-video');
   if (video) {
     const updatePlayback = () => {
-      if (reducedMotion.matches || document.hidden || !video.dataset.inView) video.pause();
+      if (reducedMotion.matches) video.pause();
       else video.play().catch(() => {});
     };
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(entries => {
-        video.dataset.inView = entries[0].isIntersecting ? 'true' : '';
-        updatePlayback();
-      }, { threshold: 0.05 }).observe(video);
-    } else video.dataset.inView = 'true';
     reducedMotion.addEventListener?.('change', updatePlayback);
-    document.addEventListener('visibilitychange', updatePlayback);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) updatePlayback(); });
     updatePlayback();
   }
-  const nutalink = [...document.querySelectorAll('.project')].find(article => article.querySelector('.project-info h3')?.textContent.trim() === 'NutaLink');
-  if (nutalink) {
-    const art = nutalink.querySelector('.nutalink-art');
-    if (art) {
-      const image = document.createElement('img');
-      image.src = './project-covers/nutalink-home-public.webp';
-      image.width = 1920;
-      image.height = 936;
-      image.alt = 'NutaLink homepage design preview';
-      image.loading = 'lazy';
-      art.replaceWith(image);
-      nutalink.querySelector('.project-visual')?.classList.remove('nutalink-visual');
-    }
-    const currentState = nutalink.querySelector('.detail-grid > div:nth-child(3) p');
-    if (currentState) currentState.textContent = 'The homepage design shows the responsive frontend direction and the visual system I carried into implementation.';
+  const coverflow = document.querySelector('[data-coverflow]');
+  if (coverflow) {
+    const cards = [...coverflow.querySelectorAll('.coverflow-card')];
+    const stage = coverflow.querySelector('.coverflow-stage');
+    const caption = coverflow.querySelector('.coverflow-caption');
+    let active = 0;
+    let dragStart = null;
+    let suppressClick = false;
+    const render = index => {
+      active = (index + cards.length) % cards.length;
+      const selected = cards[active];
+      cards.forEach((card, i) => {
+        const distance = (i - active + cards.length) % cards.length;
+        card.dataset.position = distance === 0 ? 'active' : distance === 1 ? 'next' : distance === cards.length - 1 ? 'prev' : 'far';
+        card.tabIndex = distance === 0 ? 0 : -1;
+        if (distance === 0) card.setAttribute('aria-current', 'true');
+        else card.removeAttribute('aria-current');
+      });
+      coverflow.querySelector('[data-coverflow-kind]').textContent = `${selected.dataset.kind} · ${String(active + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+      coverflow.querySelector('[data-coverflow-category]').textContent = selected.dataset.category;
+      coverflow.querySelector('[data-coverflow-label]').textContent = selected.dataset.category;
+      coverflow.querySelector('[data-coverflow-name]').textContent = selected.dataset.name;
+      coverflow.querySelector('[data-coverflow-role]').textContent = selected.dataset.role;
+      coverflow.querySelector('[data-coverflow-description]').textContent = selected.dataset.description;
+      coverflow.querySelector('[data-coverflow-link]').href = selected.dataset.href;
+      coverflow.querySelector('[data-coverflow-count]').textContent = `${String(active + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+      if (!reducedMotion.matches && caption.animate) caption.animate([{ opacity: .35, transform: 'translateY(5px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 320, easing: 'ease-out' });
+    };
+    coverflow.querySelector('[data-coverflow-prev]').addEventListener('click', () => render(active - 1));
+    coverflow.querySelector('[data-coverflow-next]').addEventListener('click', () => render(active + 1));
+    cards.forEach((card, i) => card.addEventListener('click', event => {
+      if (suppressClick) { event.preventDefault(); suppressClick = false; return; }
+      if (i === active) window.location.href = card.dataset.href;
+      else render(i);
+    }));
+    stage.addEventListener('keydown', event => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      render(active + (event.key === 'ArrowRight' ? 1 : -1));
+      cards[active].focus();
+    });
+    stage.addEventListener('pointerdown', event => { dragStart = event.clientX; });
+    stage.addEventListener('pointerup', event => {
+      if (dragStart === null) return;
+      const distance = event.clientX - dragStart;
+      dragStart = null;
+      if (Math.abs(distance) < 45) return;
+      suppressClick = true;
+      render(active + (distance < 0 ? 1 : -1));
+      setTimeout(() => { suppressClick = false; }, 0);
+    });
+    stage.addEventListener('pointercancel', () => { dragStart = null; });
+  }
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.magnetic-button').forEach(button => {
+      button.addEventListener('pointermove', event => {
+        if (reducedMotion.matches) return;
+        const bounds = button.getBoundingClientRect();
+        const x = event.clientX - bounds.left, y = event.clientY - bounds.top;
+        button.style.setProperty('--pointer-x', `${x}px`);
+        button.style.setProperty('--pointer-y', `${y}px`);
+        button.style.setProperty('--magnet-x', `${((x / bounds.width) - .5) * 7}px`);
+        button.style.setProperty('--magnet-y', `${((y / bounds.height) - .5) * 7}px`);
+      });
+      button.addEventListener('pointerleave', () => {
+        button.style.setProperty('--magnet-x', '0px');
+        button.style.setProperty('--magnet-y', '0px');
+      });
+    });
   }
   const reveal = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
