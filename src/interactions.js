@@ -1,30 +1,7 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    const frame = document.createElement('div');
-    frame.className = 'hero-media';
-    const video = document.createElement('video');
-    video.className = 'hero-video';
-    video.autoplay = true;
-    video.muted = true;
-    video.loop = true;
-    video.playsInline = true;
-    video.preload = 'metadata';
-    video.poster = './media/hero-poster.webp';
-    video.setAttribute('aria-hidden', 'true');
-    const source = document.createElement('source');
-    source.src = './media/hero-nature.mp4';
-    source.type = 'video/mp4';
-    video.append(source);
-    const shade = document.createElement('div');
-    shade.className = 'hero-shade';
-    shade.setAttribute('aria-hidden', 'true');
-    const content = document.createElement('div');
-    content.className = 'hero-content';
-    while (hero.firstChild) content.append(hero.firstChild);
-    frame.append(video, shade, content);
-    hero.append(frame);
+  const video = document.querySelector('.hero-video');
+  if (video) {
     const updatePlayback = () => {
       if (reducedMotion.matches || document.hidden || !video.dataset.inView) video.pause();
       else video.play().catch(() => {});
