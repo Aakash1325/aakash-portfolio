@@ -379,3 +379,4 @@ body{font-family:Arial,Helvetica,sans-serif}
 .home-page h1,.home-page h2,.home-page h3,.home-page .brand,.home-page .contact-title,.case-page h1,.case-page h2,.case-page h3{font-family:Instrument,Arial,sans-serif}
 .orbit-center span{font-family:Instrument,Arial,sans-serif}
 @media(min-width:701px){.home-page .home-nav{left:50%;right:auto;width:calc(100% - clamp(40px,12vw,192px));transform:translateX(-50%)}}
+.home-page .home-nav{animation:none}
