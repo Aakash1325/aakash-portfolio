@@ -22,15 +22,15 @@ export const caseStudies = [
     reflection:'Approved before-and-after screens and review feedback would make individual decisions and effects clearer.'
   },
   {
-    name:'NutaLink',slug:'nutalink',category:'AGRICULTURAL B2B PLATFORM',kind:'Company project',visual:'abstract',
+    name:'NutaLink',slug:'nutalink',category:'AGRICULTURAL B2B PLATFORM',kind:'Company project',image:'nutalink-home-public.webp',imageAlt:'NutaLink landing-page design preview',visual:'public',
     title:'From product design to responsive frontend.',
     desc:'Sole UI/UX design, interactive prototyping, and frontend implementation for a company project in testing.',
     role:'Sole UI/UX designer and frontend implementer',ownership:'Company-owned project; I completed the interface design and frontend implementation.',status:'Testing phase',
     context:'NutaLink is an agricultural B2B platform. The work calls for a consistent interface across product discovery and business-oriented journeys.',
     contribution:'I handled the complete UI/UX design, interaction design, interactive prototypes, responsive layouts, and frontend implementation. This describes the interface and frontend scope, not backend or full-stack ownership.',
-    decisions:[['Design and implementation in one loop','Owning both interface design and frontend work let me check how layouts and interactions behave in the browser.'],['Build adaptable patterns','Responsive structure and reusable interface patterns supported consistency across the experience.'],['Protect work in testing','The project is represented with an abstract graphic while its product screens remain private.']],
-    outcome:'The project is in testing. An abstract illustration represents the work; no unreleased interface or adoption figures are shown.',
-    reflection:'After release and approval, this case study can include selected screens and a more detailed account of the implementation.'
+    decisions:[['Design and implementation in one loop','Owning both interface design and frontend work let me check how layouts and interactions behave in the browser.'],['Build adaptable patterns','Responsive structure and reusable interface patterns supported consistency across the experience.'],['Show the supplied landing-page visual','This portfolio uses the specific homepage preview supplied for NutaLink without adding other product screens.']],
+    outcome:'The project is in testing. The supplied landing-page design preview represents the work; no adoption figures or other product screens are shown.',
+    reflection:'After release and approval, this case study can include a more detailed account of the implementation.'
   },
   {
     name:'Toodhu',slug:'toodhu',category:'BUSINESS SOFTWARE',kind:'Professional work',image:'toodhu-public.webp',visual:'public',url:'https://www.toodhu.com/',
