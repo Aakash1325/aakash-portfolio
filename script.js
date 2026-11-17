@@ -126,6 +126,28 @@
     link.append(line);
   });
 
+  const aboutScroll=document.querySelector('[data-about-scroll]');
+  if (aboutScroll) {
+    const track=aboutScroll.querySelector('[data-about-track]');
+    const progressLine=aboutScroll.querySelector('[data-about-progress]');
+    let queued=false;
+    const paint=() => {
+      queued=false;
+      if (reduce.matches) { track.style.transform=''; progressLine.style.transform=''; return; }
+      const bounds=aboutScroll.getBoundingClientRect();
+      const distance=Math.max(1,bounds.height-innerHeight);
+      const progress=Math.max(0,Math.min(1,-bounds.top/distance));
+      const travel=Math.max(0,track.scrollWidth-innerWidth);
+      track.style.transform=`translate3d(${-progress*travel}px,0,0)`;
+      progressLine.style.transform=`scaleX(${progress})`;
+    };
+    const queue=() => { if (!queued) { queued=true; requestAnimationFrame(paint); } };
+    addEventListener('scroll',queue,{passive:true});
+    addEventListener('resize',queue,{passive:true});
+    reduce.addEventListener?.('change',queue);
+    queue();
+  }
+
   const reveal=document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const observer=new IntersectionObserver(entries => entries.forEach(entry => {
