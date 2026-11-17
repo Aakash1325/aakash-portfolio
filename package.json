@@ -1,1 +1,1 @@
-{"name":"aakash-portfolio","version":"2.0.0","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs"},"devDependencies":{"esbuild":"0.28.0","react":"19.2.6","react-dom":"19.2.6","lucide-react":"1.31.0"}}
+{"name":"aakash-portfolio","version":"2.0.0","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs"},"devDependencies":{"@tailwindcss/cli":"^4.3.5","esbuild":"0.28.0","lucide-react":"1.31.0","react":"19.2.6","react-dom":"19.2.6","tailwindcss":"^4.3.5","typescript":"^7.0.2"}}

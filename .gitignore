@@ -1,2 +1,5 @@
 node_modules/
 scripts/.render.cjs
+.env.local
+src/components/ui/wave-lettering.tsx
+src/components/ui/wave-lettering.jsx

@@ -36,76 +36,6 @@
     addEventListener('resize', () => { if (innerWidth > 700) close(); }, {passive:true});
   }
 
-  const orbit = document.querySelector('[data-orbit]');
-  if (orbit) {
-    const stage = orbit.querySelector('.orbit-stage');
-    const path = stage.querySelector('.orbit-track path');
-    const cards = [...stage.querySelectorAll('.orbit-card')];
-    const length = path.getTotalLength();
-    const caption = orbit.querySelector('.orbit-caption');
-    let active = 0, phase = 0, last = 0, visible = false, engaged = false, dragX = null, ticking = false;
-    const update = index => {
-      active = (index + cards.length) % cards.length;
-      const card = cards[active];
-      cards.forEach((item,i) => item.setAttribute('aria-pressed', String(i === active)));
-      const count = `${String(active+1).padStart(2,'0')} / ${String(cards.length).padStart(2,'0')}`;
-      orbit.querySelector('[data-orbit-kind]').textContent = `${card.dataset.kind} · ${count}`;
-      orbit.querySelector('[data-orbit-category]').textContent = card.dataset.category;
-      orbit.querySelector('[data-orbit-label]').textContent = card.dataset.category;
-      orbit.querySelector('[data-orbit-name]').textContent = card.dataset.name;
-      orbit.querySelector('[data-orbit-role]').textContent = card.dataset.role;
-      orbit.querySelector('[data-orbit-description]').textContent = card.dataset.description;
-      orbit.querySelector('[data-orbit-status]').textContent = card.dataset.status;
-      orbit.querySelector('[data-orbit-link]').href = card.dataset.href;
-      orbit.querySelector('[data-orbit-count]').textContent = count;
-      if (!reduce.matches && caption.animate) caption.animate([{opacity:.4,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:360,easing:'ease-out'});
-    };
-    const frame = now => {
-      if (reduce.matches || !visible || document.hidden) { ticking = false; return; }
-      const dt = Math.min(now-last, 50);
-      last = now;
-      if (!engaged) phase = (phase + dt / 48000) % 1;
-      cards.forEach((card,i) => {
-        const point = path.getPointAtLength(((i/cards.length + phase) % 1) * length);
-        card.style.left = `${point.x/10}%`;
-        card.style.top = `${point.y/6.4}%`;
-        card.style.zIndex = String(Math.round(point.y)+ (i===active?1000:0));
-      });
-      requestAnimationFrame(frame);
-    };
-    const resume = () => { if (!ticking && !reduce.matches && visible && !document.hidden) { ticking = true; last = performance.now(); requestAnimationFrame(frame); } };
-    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; resume(); },{rootMargin:'150px'});
-    observer.observe(stage);
-    document.addEventListener('visibilitychange', resume);
-    stage.addEventListener('pointerenter', () => { engaged = true; });
-    stage.addEventListener('pointerleave', () => { engaged = false; });
-    stage.addEventListener('focusin', () => { engaged = true; });
-    stage.addEventListener('focusout', event => { if (!stage.contains(event.relatedTarget)) engaged = false; });
-    cards.forEach((card,i) => card.addEventListener('click', () => {
-      if (Math.abs((dragX ?? 0) - (stage.dataset.releaseX ? Number(stage.dataset.releaseX) : (dragX ?? 0))) > 45) return;
-      if (i===active) location.href=card.dataset.href; else update(i);
-    }));
-    orbit.querySelector('[data-orbit-prev]').addEventListener('click', () => update(active-1));
-    orbit.querySelector('[data-orbit-next]').addEventListener('click', () => update(active+1));
-    stage.addEventListener('keydown', event => {
-      if (!['ArrowLeft','ArrowRight'].includes(event.key)) return;
-      event.preventDefault();
-      update(active+(event.key==='ArrowRight'?1:-1));
-      cards[active].focus();
-    });
-    stage.addEventListener('pointerdown', event => { dragX=event.clientX; stage.dataset.releaseX=String(event.clientX); });
-    stage.addEventListener('pointerup', event => {
-      if (dragX===null) return;
-      const delta=event.clientX-dragX;
-      stage.dataset.releaseX=String(event.clientX);
-      if (Math.abs(delta)>45) update(active+(delta<0?1:-1));
-      setTimeout(() => { dragX=null; },0);
-    });
-    stage.addEventListener('pointercancel', () => { dragX=null; });
-    reduce.addEventListener?.('change', () => { if (reduce.matches) cards.forEach(card => { card.style.left='';card.style.top=''; }); else resume(); });
-    update(0);
-  }
-
   if (fine.matches) document.querySelectorAll('.magnetic-button').forEach(button => {
     button.addEventListener('pointermove', event => {
       if (reduce.matches) return;
@@ -176,33 +106,5 @@
     } catch { copy.textContent='Copy manually'; }
   });
 
-  if (fine.matches && !reduce.matches) {
-    const canvas=document.createElement('canvas');canvas.className='splash-cursor';canvas.setAttribute('aria-hidden','true');document.body.append(canvas);
-    const ctx=canvas.getContext('2d',{alpha:true});let drops=[],running=false,lastX=0,lastY=0;
-    const resize=() => {const ratio=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*ratio;canvas.height=innerHeight*ratio;ctx.setTransform(ratio,0,0,ratio,0,0);};
-    resize();addEventListener('resize',resize,{passive:true});
-    const draw=() => {
-      ctx.clearRect(0,0,innerWidth,innerHeight);
-      drops=drops.filter(d => d.life>0);
-      drops.forEach(d => {
-        d.x+=d.vx;d.y+=d.vy;d.vx*=.97;d.vy*=.97;d.life-=.025;
-        const radius=d.r*(1.8-d.life);
-        const glow=ctx.createRadialGradient(d.x,d.y,0,d.x,d.y,radius);
-        glow.addColorStop(0,`rgba(103,110,112,${d.life*.12})`);
-        glow.addColorStop(.5,`rgba(168,174,174,${d.life*.055})`);
-        glow.addColorStop(1,'rgba(180,180,180,0)');
-        ctx.fillStyle=glow;ctx.beginPath();ctx.arc(d.x,d.y,radius,0,Math.PI*2);ctx.fill();
-      });
-      if (drops.length && !document.hidden) requestAnimationFrame(draw);else running=false;
-    };
-    const add=(x,y,burst=false) => {
-      if (document.hidden || reduce.matches) return;
-      for(let i=0;i<(burst?6:1);i++) drops.push({x,y,vx:burst?(Math.random()-.5)*4:(x-lastX)*.06,vy:burst?(Math.random()-.5)*4:(y-lastY)*.06,r:burst?30:22,life:1});
-      drops=drops.slice(-28);lastX=x;lastY=y;
-      if (!running) {running=true;requestAnimationFrame(draw);}
-    };
-    addEventListener('pointermove',event => add(event.clientX,event.clientY),{passive:true});
-    addEventListener('pointerdown',event => add(event.clientX,event.clientY,true),{passive:true});
-    reduce.addEventListener?.('change',() => { if (reduce.matches) {drops=[];canvas.remove();} });
-  }
+
 })();
