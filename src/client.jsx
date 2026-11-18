@@ -4,6 +4,7 @@ import {ArrowLeft, ArrowRight, ArrowUpRight} from 'lucide-react';
 import {caseStudies} from './case-studies.js';
 import SplashCursor from './components/SplashCursor.jsx';
 import OrbitImages from './components/OrbitImages.jsx';
+import FooterWave from './components/FooterWave.jsx';
 
 const featured=['fittex','kamblis','nutalink','toodhu','parking-spot'].map(slug=>caseStudies.find(project=>project.slug===slug));
 const projectImages=featured.map(project=>({src:`./project-covers/${project.image}`,alt:project.name}));
@@ -49,6 +50,9 @@ function SelectedWorkOrbit(){
 
 const orbitRoot=document.getElementById('orbit-react-root');
 if(orbitRoot)createRoot(orbitRoot).render(<SelectedWorkOrbit/>);
+
+const footerWaveRoot=document.getElementById('footer-wave-root');
+if(footerWaveRoot)createRoot(footerWaveRoot).render(<FooterWave/>);
 
 const splashRoot=document.getElementById('splash-react-root');
 if(splashRoot){
