@@ -58,6 +58,8 @@ export default function FooterWave(){
       const focus=pointer&&{x:pointer.x,y:pointer.y};
       for(const row of rows){
         const {t,size,period,strip,stripHeight,offset}=row;
+        const focusDepth=focus?Math.max(0,Math.min(1,(focus.y-top)/span)):.72;
+        ctx.filter=`blur(${Math.min(1.6,Math.abs(t-focusDepth)*1.9).toFixed(2)}px)`;
         const baseY=top+span*Math.pow(t,1.72);
         const amplitude=(5+22*t*t)*(width<600?.7:1);
         const drift=reduced.matches?0:seconds*11*(t+.4);
@@ -81,7 +83,7 @@ export default function FooterWave(){
           ctx.drawImage(strip,Math.floor(source*motion.dpr),0,Math.ceil(sw*motion.dpr),strip.height,x,y-stripHeight/2,sw,stripHeight);
         }
       }
-      ctx.globalAlpha=1;
+      ctx.globalAlpha=1;ctx.filter='none';
       motion.ripples=ripples.filter(ripple=>now-ripple.time<2300);
       if(motion.active&&!reduced.matches)motion.frame=requestAnimationFrame(draw);
     }
