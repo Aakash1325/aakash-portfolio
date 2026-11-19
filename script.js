@@ -60,22 +60,23 @@
   if (aboutScroll) {
     const track=aboutScroll.querySelector('[data-about-track]');
     const progressLine=aboutScroll.querySelector('[data-about-progress]');
-    let queued=false;
+    let queued=false,travel=0;
+    const measure=() => { travel=Math.max(0,track.scrollWidth-innerWidth); queue(); };
     const paint=() => {
       queued=false;
       if (reduce.matches) { track.style.transform=''; progressLine.style.transform=''; return; }
       const bounds=aboutScroll.getBoundingClientRect();
       const distance=Math.max(1,bounds.height-innerHeight);
       const progress=Math.max(0,Math.min(1,-bounds.top/distance));
-      const travel=Math.max(0,track.scrollWidth-innerWidth);
       track.style.transform=`translate3d(${-progress*travel}px,0,0)`;
       progressLine.style.transform=`scaleX(${progress})`;
     };
     const queue=() => { if (!queued) { queued=true; requestAnimationFrame(paint); } };
     addEventListener('scroll',queue,{passive:true});
-    addEventListener('resize',queue,{passive:true});
+    addEventListener('resize',measure,{passive:true});
     reduce.addEventListener?.('change',queue);
-    queue();
+    document.fonts.ready.then(measure);
+    measure();
   }
 
   const reveal=document.querySelectorAll('.reveal');
