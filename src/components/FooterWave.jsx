@@ -19,11 +19,11 @@ export default function FooterWave(){
       cancelAnimationFrame(motion.frame);motion.frame=0;
       const {width,height}=stage.getBoundingClientRect();
       if(!width||!height)return;
-      motion.width=width;motion.height=height;motion.dpr=Math.min(devicePixelRatio||1,2);
+      motion.width=width;motion.height=height;motion.dpr=Math.min(devicePixelRatio||1,1.5);
       canvas.width=Math.round(width*motion.dpr);canvas.height=Math.round(height*motion.dpr);
       canvas.style.width=`${width}px`;canvas.style.height=`${height}px`;
       ctx.setTransform(motion.dpr,0,0,motion.dpr,0,0);
-      const count=width<600?22:30;
+      const count=width<600?20:24;
       motion.rows=Array.from({length:count},(_,index)=>{
         const t=index/(count-1);
         const size=(width<600?8.5:9)+t*t*(width<600?12:15);
@@ -48,7 +48,7 @@ export default function FooterWave(){
 
     function draw(now){
       motion.frame=0;
-      if(motion.active&&now-motion.lastDraw<32){motion.frame=requestAnimationFrame(draw);return;}
+      if(motion.active&&now-motion.lastDraw<40){motion.frame=requestAnimationFrame(draw);return;}
       motion.lastDraw=now;
       const {width,height,rows,pointer,ripples}=motion;
       if(!width||!height)return;
@@ -58,12 +58,10 @@ export default function FooterWave(){
       const focus=pointer&&{x:pointer.x,y:pointer.y};
       for(const row of rows){
         const {t,size,period,strip,stripHeight,offset}=row;
-        const focusDepth=focus?Math.max(0,Math.min(1,(focus.y-top)/span)):.72;
-        ctx.filter=`blur(${Math.min(1.6,Math.abs(t-focusDepth)*1.9).toFixed(2)}px)`;
-        const baseY=top+span*Math.pow(t,1.72);
-        const amplitude=(5+22*t*t)*(width<600?.7:1);
+        const baseY=top+span*Math.pow(t,1.15);
+        const amplitude=(2+8*t*t)*(width<600?.7:1);
         const drift=reduced.matches?0:seconds*11*(t+.4);
-        const slice=width<600?28:42;
+        const slice=width<600?24:32;
         for(let x=0;x<width;x+=slice){
           const sw=Math.min(slice,width-x);
           const center=x+sw/2;
@@ -76,14 +74,14 @@ export default function FooterWave(){
             y+=Math.sin(ring/19)*Math.exp(-Math.abs(ring)/92)*Math.exp(-age/1.15)*(8+25*t)*ripple.strength;
           }
           if(y<-stripHeight||y>height+stripHeight)continue;
-          let alpha=.2+.8*Math.pow(t,1.3);
+          let alpha=.38+.62*Math.pow(t,1.3);
           if(focus){const proximity=Math.max(0,1-Math.hypot((center-focus.x)*.83,(y-focus.y)*1.2)/240);alpha=Math.min(1,alpha+proximity*proximity*.4);}
           ctx.globalAlpha=alpha;
           const source=((center+offset+drift)%period+period)%period;
           ctx.drawImage(strip,Math.floor(source*motion.dpr),0,Math.ceil(sw*motion.dpr),strip.height,x,y-stripHeight/2,sw,stripHeight);
         }
       }
-      ctx.globalAlpha=1;ctx.filter='none';
+      ctx.globalAlpha=1;
       motion.ripples=ripples.filter(ripple=>now-ripple.time<2300);
       if(motion.active&&!reduced.matches)motion.frame=requestAnimationFrame(draw);
     }
