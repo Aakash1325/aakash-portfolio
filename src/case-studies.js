@@ -51,6 +51,17 @@ export const caseStudies = [
     outcome:'The work shows design direction and responsive structure; it does not claim measured conversion or usability results.',reflection:'Before-and-after context and implementation feedback would strengthen the case.'
   },
   {
+    name:'FlyingRoots',slug:'flyingroots',category:'AGRO-FOOD TRADE / WEBSITE',kind:'Independent concept',image:'flyingroots-public.jpg',imageAlt:'FlyingRoots live concept website hero with a cargo ship and editorial typography',visual:'public',url:'https://aakash1325.github.io/flyingroots/',
+    title:'Making a complex ingredient catalogue feel clear and considered.',
+    desc:'A responsive agro-food trade website concept with an interactive seven-category catalogue and two enquiry journeys.',
+    role:'Website concept, UI/UX and frontend',ownership:'Independent portfolio concept developed under my creative direction; the brand and company details are fictional.',status:'Live concept website',
+    context:'FlyingRoots imagines how an Indian agro-food trading brand could explain its sourcing approach and help buyers and suppliers find a useful starting point. It is a portfolio concept, not an operating company.',
+    contribution:'I shaped the visual direction and responsive website experience, from the full-screen film and editorial type to the product catalogue, category search, product details, process story, and separate buyer and supplier enquiry flows. The implementation uses HTML, CSS and JavaScript with local media and accessible interaction patterns.',
+    decisions:[['Make the collection useful to browse','Seven ingredient categories pair photography with product lines, formats and specifications. Search, category controls, keyboard navigation and a detail drawer support different ways to explore.'],['Give two audiences distinct paths','Buyer and supplier forms ask for relevant information, validate it and show an editable on-page preview. The preview does not send or save an enquiry.'],['Keep motion tied to purpose','The hero film anchors the visual story, while short section reveals and user-controlled gallery and process interactions keep the longer page readable across screen sizes.']],
+    outcome:'The concept website is live on GitHub Pages. Its displayed company and contact details are fictional; enquiries are local previews, with no backend or commercial outcome claimed.',
+    reflection:'A production version would need verified company information, a secure enquiry service, and usability testing with actual buyers and suppliers.'
+  },
+  {
     name:'Parking Spot',slug:'parking-spot',category:'MOBILITY / CONCEPT',kind:'Independent concept',image:'parking-spot-full.webp',visual:'public',
     title:'Plan the arrival before the drive.',desc:'A parking app concept introduced through a responsive website; the app remains planned.',role:'Independent concept and website designer',ownership:'Independent product direction and website design.',status:'Website designed; app planned',
     context:'At unfamiliar destinations, drivers may need a better way to compare parking options before arriving.',contribution:'I proposed a discovery experience spanning public, operated, and homeowner spaces, and designed the website to communicate the concept ahead of an app build.',
