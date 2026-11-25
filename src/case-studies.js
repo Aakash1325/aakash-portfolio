@@ -44,13 +44,6 @@ export const caseStudies = [
     reflection:'Approved product screens and design review notes would help show the specific areas I handled.'
   },
   {
-    name:'Vidmagin',slug:'vidmagin',category:'HR TECH / WEBSITE',kind:'Supporting project',image:'vidmagin.webp',visual:'public',
-    title:'A clearer introduction to a hiring product.',desc:'Responsive website redesign focused on page structure and product communication.',role:'UI/UX designer',ownership:'Website redesign contribution during my Vidmagin role.',status:'Design work',
-    context:'The website needed a clear way to introduce a broad hiring product to prospective teams.',contribution:'I designed responsive page layouts, organized information hierarchy and navigation, and developed consistent visual patterns for the proposed website experience.',
-    decisions:[['Lead with comprehension','Introduce the product value before deeper detail.'],['Make next steps visible','Use page hierarchy to guide a visitor toward relevant information.'],['Carry patterns across sizes','Adapt layout and repeated elements for responsive handoff.']],
-    outcome:'The work shows design direction and responsive structure; it does not claim measured conversion or usability results.',reflection:'Before-and-after context and implementation feedback would strengthen the case.'
-  },
-  {
     name:'FlyingRoots',slug:'flyingroots',category:'AGRO-FOOD TRADE / WEBSITE',kind:'Independent concept',image:'flyingroots-public.jpg',imageAlt:'FlyingRoots live concept website hero with a cargo ship and editorial typography',visual:'public',url:'https://aakash1325.github.io/flyingroots/',
     title:'Making a complex ingredient catalogue feel clear and considered.',
     desc:'A responsive agro-food trade website concept with an interactive seven-category catalogue and two enquiry journeys.',

@@ -49,13 +49,6 @@
     button.addEventListener('pointerleave', () => { button.style.setProperty('--magnet-x','0px'); button.style.setProperty('--magnet-y','0px'); });
   });
 
-  document.querySelectorAll('.star-border').forEach(link => {
-    const line=document.createElementNS('http://www.w3.org/2000/svg','svg');
-    line.setAttribute('class','star-outline');line.setAttribute('aria-hidden','true');
-    line.innerHTML='<rect x="1" y="1" width="99%" height="96%" rx="16" pathLength="100"/>';
-    link.append(line);
-  });
-
   const aboutScroll=document.querySelector('[data-about-scroll]');
   if (aboutScroll) {
     const track=aboutScroll.querySelector('[data-about-track]');

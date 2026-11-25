@@ -522,6 +522,7 @@ const createEngine = (root, config, setAspect) => {
 
   const onKey = e => {
     if (e.key !== 'Enter' && e.key !== ' ') return;
+    if (e.target instanceof Element && e.target.closest('a[href]')) return;
     const index = itemIndex(e.target);
     if (index < 0) return;
     e.preventDefault();
@@ -689,7 +690,7 @@ export default function OrbitImages({
       images.map((image, index) =>
         typeof image === 'string'
           ? { src: image, alt: `${altPrefix} ${index + 1}` }
-          : { src: image.src, alt: image.alt ?? `${altPrefix} ${index + 1}` }
+          : { src: image.src, alt: image.alt ?? `${altPrefix} ${index + 1}`, href: image.href, name: image.name, category: image.category, description: image.description }
       ),
     [images, altPrefix]
   );
@@ -818,13 +819,14 @@ export default function OrbitImages({
           className="orbit-item"
           data-orbit-item={index}
           data-clickable={clickToFront || interactive ? '' : undefined}
-          role={interactive ? 'button' : undefined}
-          tabIndex={interactive ? 0 : undefined}
-          aria-label={interactive ? item.alt : undefined}
+          role={interactive && !item.href ? 'button' : undefined}
+          tabIndex={interactive && !item.href ? 0 : undefined}
+          aria-label={interactive && !item.href ? item.alt : undefined}
         >
-          <div className="orbit-item-inner">
-            <img src={item.src} alt={item.alt} draggable={false} decoding="async" className="orbit-image" />
-          </div>
+          {item.href ? <a className="orbit-card-link" href={item.href} aria-label={`${item.name}: ${item.description} Open case study`}>
+            <span className="orbit-item-inner"><img src={item.src} alt="" draggable={false} decoding="async" className="orbit-image" loading="lazy" /></span>
+            <span className="orbit-card-label"><strong>{item.name}</strong><small>{item.category}</small></span>
+          </a> : <div className="orbit-item-inner"><img src={item.src} alt={item.alt} draggable={false} decoding="async" className="orbit-image" /></div>}
         </div>
       ))}
       {centerContent && (
