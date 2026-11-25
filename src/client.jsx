@@ -6,12 +6,13 @@ import SplashCursor from './components/SplashCursor.jsx';
 import OrbitImages from './components/OrbitImages.jsx';
 
 const featured=['fittex','flyingroots','kamblis','nutalink','toodhu','parking-spot'].map(slug=>caseStudies.find(project=>project.slug===slug));
-const projectImages=featured.map(project=>({src:`./project-covers/${project.image}`,alt:project.name}));
+const projectImages=featured.map(project=>({src:`./project-covers/${project.slug}-editorial.webp`,alt:project.name,href:`./projects/${project.slug}.html`,name:project.name,category:project.category,description:project.desc}));
 
 function SelectedWorkOrbit(){
   const [active,setActive]=useState(0);
   const [width,setWidth]=useState(700);
   const stageRef=useRef(null);
+  const mobileRef=useRef(null);
   const project=featured[active];
   useEffect(()=>{
     const element=stageRef.current;
@@ -23,6 +24,7 @@ function SelectedWorkOrbit(){
   const select=index=>{
     const next=(index+featured.length)%featured.length;
     stageRef.current?.querySelector(`[data-orbit-item="${next}"]`)?.click();
+    mobileRef.current?.children[next]?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
     setActive(next);
   };
   const onKey=event=>{
@@ -30,7 +32,7 @@ function SelectedWorkOrbit(){
     event.preventDefault();
     const next=(active+(event.key==='ArrowRight'?1:-1)+featured.length)%featured.length;
     select(next);
-    stageRef.current?.querySelector(`[data-orbit-item="${next}"]`)?.focus();
+    stageRef.current?.querySelector(`[data-orbit-item="${next}"] a`)?.focus();
   };
   return <div className="orbit orbit-react">
     <div className="orbit-caption" aria-live="polite"><span>{project.kind} · {String(active+1).padStart(2,'0')} / {String(featured.length).padStart(2,'0')}</span><span>{project.category}</span></div>
@@ -38,9 +40,10 @@ function SelectedWorkOrbit(){
       <div className="orbit-react-stage" ref={stageRef} onKeyDown={onKey} role="region" aria-label="Selected projects" aria-roledescription="carousel">
         <OrbitImages images={projectImages} shape="ellipse" radiusX={width<600?Math.max(75,(width-130)/2):Math.min(600,width*.35)} radiusY={width<600?96:width<900?125:165} rotation={-8} duration={30} itemSize={width<600?108:width<900?150:Math.min(205,width*.16)} depth={0.6} showPath pathColor="rgba(23,23,22,.3)" pathWidth={1} height="100%" onItemClick={setActive} centerContent={<h2>Selected<br/>Work</h2>}/>
       </div>
+      <div className="orbit-mobile-list" ref={mobileRef} role="region" aria-label="Swipe through selected projects" onScroll={event=>{const el=event.currentTarget;const card=el.firstElementChild; if(card)setActive(Math.max(0,Math.min(featured.length-1,Math.round(el.scrollLeft/(card.getBoundingClientRect().width+16)))));}}>{featured.map(p=><a key={p.slug} href={`./projects/${p.slug}.html`}><img src={`./project-covers/${p.slug}-editorial.webp`} width="1280" height="960" alt="" loading="lazy"/><span>{p.category}</span><strong>{p.name}</strong><small>{p.desc}</small></a>)}</div>
       <div className="orbit-detail" aria-live="polite">
         <span className="eyebrow">{project.category}</span><h3>{project.name}</h3><span className="project-role">{project.role}</span><p>{project.desc}</p><span className="orbit-status">{project.status}</span>
-        <a className="case-link star-border" href={`./projects/${project.slug}.html`}><span>Read the case study <ArrowUpRight size={18}/></span></a>
+        <a className="case-link btn-primary" href={`./projects/${project.slug}.html`}><span>Read the case study <ArrowUpRight size={18}/></span></a>
         <div className="orbit-controls"><button type="button" onClick={()=>select(active-1)} aria-label="Previous project"><ArrowLeft size={20}/></button><span>{String(active+1).padStart(2,'0')} / {String(featured.length).padStart(2,'0')}</span><button type="button" onClick={()=>select(active+1)} aria-label="Next project"><ArrowRight size={20}/></button></div>
       </div>
     </div>
